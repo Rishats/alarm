@@ -11,6 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $date = new DateTime();
+        DB::table('working')->insert(
+               [
+                'demo_on' => 0,
+                'temperature_on' => 0,
+                'co_on' => 0,
+                'warning_on' => 0,
+            ]);
     }
 }
