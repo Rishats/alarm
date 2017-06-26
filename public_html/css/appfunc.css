@@ -1,0 +1,184 @@
+@import url(http://fonts.googleapis.com/css?family=Varela+Round);
+@import url(http://fonts.googleapis.com/css?family=Lusitana);
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Varela Round";
+  background: #444444;
+}
+
+#header {
+  background: url(../img/appfunc.jpg) no-repeat center top;
+  background-size: cover;
+  position: fixed;
+  height: 90%;
+  bottom: 10%;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+#header .center {
+  background: rgba(0, 0, 0, 0.25);
+  text-align: center;
+  position: absolute;
+  color: #FFFFFF;
+  color: #F5F7FA;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+#header .center .middle {
+  position: absolute;
+  margin-top: -8em;
+  right: 0;
+  left: 0;
+  top: 50%;
+}
+#header .center .middle h1 {
+  font-family: "Lusitana";
+  font-weight: normal;
+  line-height: 1em;
+  font-size: 11em;
+  margin: 0;
+}
+#header .center .middle span {
+  line-height: 5em;
+  font-size: 1em;
+}
+
+#pageHr {
+  background: #FFFFFF;
+  position: relative;
+  height: 5px;
+  display: block;
+  right: 0px;
+  left: 0px;
+  top: 90%;
+  z-index: 1;
+}
+#pageHr > i {
+  margin: -25px;
+  border: 5px solid #FFFFFF;
+  height: 40px;
+  width: 40px;
+  background: #48CFAD;
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+#pageHr > i > i {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  line-height: 36.8px;
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  position: absolute;
+  color: #FFFFFF;
+  display: block;
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#page {
+  position: relative;
+  top: 90%;
+}
+
+#temperature1 {
+  
+    padding-left: 15px;
+    padding-top: 15px;
+    float: left; 
+    top: 40px; 
+    right: 50px; 
+}
+
+
+#backmain {
+
+    position: fixed;
+    bottom: 30px;
+    left: -webkit-calc(50% - 100px);
+    
+}
+
+#co1 {
+     width: 500px; /* Ширина элемента в пикселах */
+    margin: auto; /* Выравниваем по центру */
+    
+    
+}
+#temperature {
+    width: 500px; /* Ширина элемента в пикселах */
+    margin: auto; /* Выравниваем по центру */
+    
+    
+}
+
+#temperaturemonitoring1
+{
+  width: 500px;
+  /*float: left;*/
+}
+
+#comonitoring1
+{
+  width: 500px;
+  /*float: right;*/
+}
+
+#textmonitoring
+{
+  color: rgba(0,0,0,0.6);
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+  0px -5px 35px rgba(255,255,255,0.3);
+  /*float: right;*/
+}
+#textmonitoring2
+{
+  color: rgba(0,0,0,0.6);
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+  0px -5px 35px rgba(255,255,255,0.3);
+}
+.charts-wrap{
+  background: #37a1bc;
+  text-align:center;
+  padding-bottom: 200px;
+}
+.chart{
+  display:inline-block;
+  float:none;
+  margin-right: 40px;
+  vertical-align:top;
+}
+
+@media screen and (min-width: 906px) {
+  h1{
+
+  }
+}
+
+
+div.buttons_left
+{
+float:left;
+width:500px;
+}
+div.buttons_right 
+{
+float:right;
+width:500px;
+}

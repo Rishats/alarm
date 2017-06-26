@@ -1,0 +1,11 @@
+#controlpanelmain
+{
+	padding-top: 2%;
+	padding-right: 5%;
+	padding-left: 5%;
+}
+#controlpanel
+{
+	background-color: white;
+	border-radius: 5%;	
+}
