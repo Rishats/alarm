@@ -19,5 +19,10 @@ class DatabaseSeeder extends Seeder
                 'co_on' => 0,
                 'warning_on' => 0,
             ]);
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+        ]);
     }
 }
