@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>ALARM SYSTEM</title>
   <link rel="stylesheet" href="css/logo.css">
-  <link rel="shortcut icon" href="{{{ asset('img/logo.ico') }}}">
+  <link rel="shortcut icon" href="{{ asset('img/logo.ico') }}">
 </head>
 <body>
   <div id="particles">
