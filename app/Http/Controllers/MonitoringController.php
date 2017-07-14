@@ -67,30 +67,6 @@ class MonitoringController extends Controller
         }
 
     }
-    public function demo()
-    {
-        if (Auth::guest())
-        {
-            return view('home');
-        }
-        else
-        {
-            while(true){
-
-
-            $randomco = random_int(1, 1023);
-            $randomtemperature = random_int(1, 50);
-            DB::table('co')->insert(
-                ['co' => $randomco]
-            );
-            DB::table('temperature')->insert(
-                ['temperature' => $randomtemperature]
-            );
-            sleep(1);
-            }
-        }
-
-    }
 
 
 

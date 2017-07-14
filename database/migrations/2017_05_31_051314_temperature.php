@@ -16,11 +16,13 @@ class Temperature extends Migration
         Schema::create('temperature', function (Blueprint $table) {
             $table->increments('id');
             $table->smallInteger('temperature');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+
         });
     }
 
-    /**
+    /**cd
      * Reverse the migrations.
      *
      * @return void

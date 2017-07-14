@@ -98,8 +98,6 @@ Route::get('/cojsonnow','CoController@cojsonnow');
 Route::get('/temperaturejsonminute','MonitoringController@temperaturejsonminute');
 Route::get('/cojsonminute','MonitoringController@cojsonminute');
 
-// Включение нереальных датчиков и работа их (рандомные значения).
-Route::get('/demo','MonitoringController@demo');
 
 // Управления датчиками и Ардуино.
 Route::get('/controlpanel','ArduinoController@controlpanel');
@@ -117,3 +115,4 @@ Route::get('/stopwarning','ArduinoController@stop_warning');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

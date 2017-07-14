@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Working as Working;
 use Auth;
 use Carbon\Carbon as Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ArduinoController extends Controller
 {
@@ -31,6 +32,17 @@ class ArduinoController extends Controller
         }
         else{
             Working::where('id', 1)->update(['demo_on' => 1]);
+            while($demo_on = DB::table('working')->select('demo_on')->get()->first()->demo_on == 1){
+                $randomco = random_int(1, 1023);
+                $randomtemperature = random_int(1, 50);
+                DB::table('co')->insert(
+                    ['co' => $randomco]
+                );
+                DB::table('temperature')->insert(
+                    ['temperature' => $randomtemperature]
+                );
+                sleep(1);
+            }
             return redirect('/controlpanel');
         }
     }
