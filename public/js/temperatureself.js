@@ -2,65 +2,36 @@
  * Created by SKELETON on 01.06.2017.
  */
 
-    var xmlhttp = new XMLHttpRequest();
+var gauge = new LinearGauge({
+    renderTo: 'canvas-id',
+    value: 0,
+    minValue: 0,
+    maxValue: 50,
+    animation: false,
+    width: 500,
+    height: 500,
+    majorTicks: [
+        "0",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50"
+    ],
+}).draw();
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState !== 4 || this.status !== 200) {
+        return;
+    }
+
     var temperature = [];
-    var temperaturejson = [];
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+    $.each(JSON.parse(this.responseText), function(key, value) {
+        temperature.push(value.temperature);
+    });
 
-            var temperaturejsonobj = JSON.parse(this.responseText); // Парсим данные с /json адреса
-
-            $.each( temperaturejsonobj, function( key, value ) {
-                temperaturejson.push(value);
-            }); // Все данные с JSON
-
-            function returntemperature() {
-                for (var i = 0;i<temperaturejson.length; i++) {
-                    temperature.push(temperaturejson[i].temperature);
-                } // Получаем температуру
-                return temperature;
-            }
-
-
-            var gauge = new LinearGauge({ renderTo: 'canvas-id', value: 0 });
-
-            gauge.update({
-                minValue: 0,
-                maxValue: 50,
-                animation: false,
-                width: 500,
-                height: 500,
-                majorTicks: [
-                    "0",
-                    "10",
-                    "20",
-                    "30",
-                    "40",
-                    "50"
-
-                ],
-
-            });
-
-
-
-// (2)
-            function temperaturechanging(now) {
-                // change the value at runtime
-                gauge.value = now;
-            }
-            var tnow = returntemperature();
-            temperaturechanging(tnow);
-            console.log(tnow);
-
-            gauge = null;
-            temperaturejsonobj = null;
-            tnow = null;
-        }
-
-        temperature = [];
-        temperaturejson = [];
-    };
+    gauge.value = temperature;
+};
 
 setInterval(function() {
     xmlhttp.open("GET", "temperaturejsonnow", true);
