@@ -24,5 +24,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
         ]);
+        DB::table('noty')->insert([
+            'co' => 0,
+            'temperature' => 0,
+        ]);
     }
 }
