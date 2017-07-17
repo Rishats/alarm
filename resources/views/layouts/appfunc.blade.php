@@ -5,16 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{--<meta http-equiv="refresh" content="10">--}}
-    <link rel="shortcut icon" href="{{ asset('img/as.ico') }}}">
+    <link rel="shortcut icon" href="{{ asset('img/as.ico') }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Alarm System</title>
     <!-- Styles -->
-
+    <script src="js/howler.js"></script>
+    <script src="js/noty.js" type="text/javascript"></script>
+    <link href="css/noty.css" rel="stylesheet">
     <script src='js/jquery-3.2.1.min.js'></script>
     <script src='js/Chart.min.js'></script>
     <link href="css/appfunc.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
     <script src="js/gauge.min.js"></script>
     <script src="js/jquery.scrollTo-1.4.3.1-min.js" type="text/javascript"></script>
     <link href="{{ asset('css/controlpanel.css') }}" rel="stylesheet">  
@@ -43,5 +47,6 @@
 
 <!-- Scripts -->
 <script src="js/appfunc.js"></script>
+<script src="js/noty_project.js" type="text/javascript"></script>
 </body>
 </html>

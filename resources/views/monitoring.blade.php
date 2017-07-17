@@ -10,7 +10,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Alarm System</title>
     <!-- Styles -->
-
+    <script src="js/howler.js"></script>
+    <script src="js/noty.js" type="text/javascript"></script>
+    <link href="css/noty.css" rel="stylesheet">
     <script src='js/jquery-3.2.1.min.js'></script>
     <script src='js/Chart.min.js'></script>
     <link href="css/appfunc.css" rel="stylesheet">
@@ -53,6 +55,7 @@
 
 <!-- Scripts -->
 <script src="js/appfunc.js"></script>
+<script src="js/noty_project.js" type="text/javascript"></script>
 </body>
 </html>
 

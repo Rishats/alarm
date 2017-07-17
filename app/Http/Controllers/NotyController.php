@@ -9,6 +9,7 @@ use DB;
 use Carbon\Carbon;
 
 
+
 class NotyController extends Controller
 {
 
@@ -21,9 +22,50 @@ class NotyController extends Controller
         }
         else
         {
-            $hour = DB::table('noty')->find(1);
-            $notyjson = json_encode($hour);
-            return $notyjson;
+            // CO array за последнюю секунду
+            $co = DB::table('co');
+            $coarray = [];
+            $coobj = $co
+                ->where('created_at', '>=', Carbon::now('Asia/Almaty')
+                    ->subSeconds(1))
+                ->get();
+
+            foreach ($coobj as $key => $value)
+            {
+                foreach ($value as $key => $value)
+                {
+                    if($key == 'co')
+                    {
+                        $coarray['co'] = $value;
+                    }
+                }
+            }
+
+            // Temperature array за последнюю секунду
+            $temperature = DB::table('temperature');
+            $temperaturearray = [];
+            $temperatureobj = $temperature
+                ->where('created_at', '>=', Carbon::now('Asia/Almaty')
+                    ->subSeconds(1))
+                ->get();
+
+            foreach ($temperatureobj as $key => $value)
+            {
+                foreach ($value as $key => $value)
+                {
+                    if($key == 'temperature')
+                    {
+                        $temperaturearray['temperature'] = $value;
+                    }
+                }
+            }
+
+
+
+            // Глобальные данные для варнингов на сайте.
+            $co_temperature_noty_json_data = array_merge($coarray, $temperaturearray);
+
+            return json_encode($co_temperature_noty_json_data);
         }
     }
 }

@@ -6,20 +6,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Noty;
 
 class CoController extends Controller
 {
     public function cojsonnow()
     {
-        if (Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('home');
         }
         else
         {
-            $hour = DB::table('co')
-                ->where('created_at', '>=', Carbon::now('Asia/Almaty')->subSeconds(1));
-            $cojson = json_encode($hour->get());
+            $hour = DB::table('co');
+
+            $cojson = json_encode($hour
+                ->where('created_at', '>=', Carbon::now('Asia/Almaty')
+                ->subSeconds(1))
+                ->get());
             return $cojson;
         }
     }

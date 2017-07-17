@@ -95,6 +95,7 @@
         @endif
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="js/noty_project.js" type="text/javascript"></script>
     </div>
 </body>
 </html>
