@@ -22,50 +22,61 @@ class NotyController extends Controller
         }
         else
         {
-            // CO array за последнюю секунду
-            $co = DB::table('co');
-            $coarray = [];
-            $coobj = $co
-                ->where('created_at', '>=', Carbon::now('Asia/Almaty')
-                    ->subSeconds(1))
-                ->get();
-
-            foreach ($coobj as $key => $value)
+            // Провера включены ли оповещения на сайте.
+            $working = DB::table('working')->get();
+            $work = $working->first()->warning_on;
+            if ($work == 1) 
             {
-                foreach ($value as $key => $value)
+                // CO array за последнюю секунду
+                $co = DB::table('co');
+                $coarray = [];
+                $coobj = $co
+                    ->where('created_at', '>=', Carbon::now('Asia/Almaty')
+                        ->subSeconds(1))
+                    ->get();
+
+                foreach ($coobj as $key => $value)
                 {
-                    if($key == 'co')
+                    foreach ($value as $key => $value)
                     {
-                        $coarray['co'] = $value;
+                        if($key == 'co')
+                        {
+                            $coarray['co'] = $value;
+                        }
                     }
                 }
-            }
 
-            // Temperature array за последнюю секунду
-            $temperature = DB::table('temperature');
-            $temperaturearray = [];
-            $temperatureobj = $temperature
-                ->where('created_at', '>=', Carbon::now('Asia/Almaty')
-                    ->subSeconds(1))
-                ->get();
+                // Temperature array за последнюю секунду
+                $temperature = DB::table('temperature');
+                $temperaturearray = [];
+                $temperatureobj = $temperature
+                    ->where('created_at', '>=', Carbon::now('Asia/Almaty')
+                        ->subSeconds(1))
+                    ->get();
 
-            foreach ($temperatureobj as $key => $value)
-            {
-                foreach ($value as $key => $value)
+                foreach ($temperatureobj as $key => $value)
                 {
-                    if($key == 'temperature')
+                    foreach ($value as $key => $value)
                     {
-                        $temperaturearray['temperature'] = $value;
+                        if($key == 'temperature')
+                        {
+                            $temperaturearray['temperature'] = $value;
+                        }
                     }
                 }
+
+
+
+                // Глобальные данные для варнингов на сайте.
+                $co_temperature_noty_json_data = array_merge($coarray, $temperaturearray);
+
+                return json_encode($co_temperature_noty_json_data);
             }
-
-
-
-            // Глобальные данные для варнингов на сайте.
-            $co_temperature_noty_json_data = array_merge($coarray, $temperaturearray);
-
-            return json_encode($co_temperature_noty_json_data);
+            else
+            {
+                $errors = ['[Offline] Noty Отключена в панели','Empty'];
+                return $errors;
+            }
         }
     }
 }
