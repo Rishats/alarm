@@ -33,7 +33,7 @@ xmlhttps.onreadystatechange = function() {
                 container: false,
                 buttons: [],
                 sounds: {
-                    sources: ['wav/co.wav'],
+                    sources: ['wav/warning.wav'],
                     volume: 1,
                     conditions: []
                 },
@@ -44,10 +44,10 @@ xmlhttps.onreadystatechange = function() {
             }).show()
 
             var sound = new Howl({
-                src: ['wav/temperature.wav']
+                src: ['wav/warning.wav']
             });
 
-            // sound.play(); // Включение звука
+            sound.play(); // Включение звука
         }
     }
     if(noty[1] >= 35)
@@ -72,7 +72,7 @@ xmlhttps.onreadystatechange = function() {
                 container: false,
                 buttons: [],
                 sounds: {
-                    sources: ['wav/co.wav'],
+                    sources: ['wav/warning.wav'],
                     volume: 1,
                     conditions: []
                 },
@@ -83,7 +83,7 @@ xmlhttps.onreadystatechange = function() {
             }).show()
 
             var sound = new Howl({
-                src: ['wav/temperature.wav']
+                src: ['wav/warning.wav']
             });
 
             //sound.play(); // Включение звука
