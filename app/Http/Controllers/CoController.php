@@ -10,18 +10,29 @@ use App\Noty;
 
 class CoController extends Controller
 {
-    public function cojsonnow()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        if (Auth::guest()) {
-            return view('home');
-        } else {
-            $hour = DB::table('co');
+        $this->middleware('auth');
+    }
 
-            $co_json = json_encode($hour
-                ->where('created_at', '>=', Carbon::now('Asia/Almaty')
-                ->subSeconds(1))
-                ->get());
-            return $co_json;
-        }
+    /**
+     * Last CO data in Database
+     * @return string
+     */
+    public function co_json_now()
+    {
+        $hour = DB::table('co');
+
+        $co_json = json_encode($hour
+            ->where('created_at', '>=', Carbon::now('Asia/Almaty')
+            ->subSeconds(1))
+            ->get());
+
+        return $co_json;
     }
 }

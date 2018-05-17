@@ -13,79 +13,53 @@
 
 // Лого вьюха.
 Route::get('/', function () {
-    
     return view('logo');
 });
 
 
 Route::get('/temperature', function () {
-        if (Auth::guest()) {
-            return view('home');
-        } else {
-            return view('temperature');
-        }
-});
+    return view('temperature');
+})->middleware('auth');
 
 Route::get('/co', function () {
-        if (Auth::guest()) {
-            return view('home');
-        } else {
-            return view('co');
-        }
-});
+    return view('co');
+})->middleware('auth');
 
 Route::get('/monitoring', function () {
-        if (Auth::guest()){
-            return view('home');
-        } else {
-            return view('monitoring');
-        }
-});
+    return view('monitoring');
+})->middleware('auth');
 
 Route::get('/warning', function () {
-        if (Auth::guest()){
-            return view('home');
-        } else {
-            return view('warning');
-        }
-});
-
+    return view('warning');
+})->middleware('auth');
 
 Route::get('/addressees', function () {
-        if (Auth::guest()){
-            return view('home');
-        } else {
-            return view('addressees');
-        }
-});
+    return view('addressees');
+})->middleware('auth');
 
 Route::get('/logoutmy', function () {
-        if (Auth::guest()){
-            return view('home');
-        } else {
-            return view('logoutmy');
-        }
-});
+    return view('logoutmy');
+})->middleware('auth');
 
 
 // Температура в JSON формате все данные.
-Route::get('/temperaturejson','MonitoringController@temperaturejson');
-Route::get('/cojson','MonitoringController@cojson');
+Route::get('/temperaturejson','MonitoringController@temperature_json');
+Route::get('/cojson','MonitoringController@co_json');
 
 // Температура в JSON формате за последнюю секунду.
-Route::get('/temperaturejsonnow','TemperatureController@temperaturejsonnow');
-Route::get('/cojsonnow','CoController@cojsonnow');
+Route::get('/temperaturejsonnow','TemperatureController@temperature_json_now');
+Route::get('/cojsonnow','CoController@co_json_now');
 
 // Температура в JSON формате данные за последнюю минуту (60 секунд).
-Route::get('/temperaturejsonminute','MonitoringController@temperaturejsonminute');
-Route::get('/cojsonminute','MonitoringController@cojsonminute');
+Route::get('/temperaturejsonminute','MonitoringController@temperature_json_minute');
+Route::get('/cojsonminute','MonitoringController@co_json_minute');
 
 // Noty(Оповещение) в JSON формате данные за последнюю секунду.
-Route::get('/notyjsonnow','NotyController@notyinfo');
+Route::get('/notyjsonnow','NotyController@noty_info');
 
 
 // Управления датчиками и Ардуино.
-Route::get('/controlpanel','ArduinoController@controlpanel');
+Route::get('/controlpanel','ArduinoController@control_panel');
 Route::get('/startdemo','ArduinoController@start_demo');
 Route::get('/stopdemo','ArduinoController@stop_demo');
 Route::get('/starttemperature','ArduinoController@start_temperature');

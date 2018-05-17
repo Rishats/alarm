@@ -11,51 +11,61 @@ use Illuminate\Support\Facades\Auth;
 
 class MonitoringController extends Controller
 {
-    public function temperaturejson()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        if (Auth::guest()) {
-            return view('home');
-        } else {
-            $temperaturejson = json_encode(Temperature::all());
-            return $temperaturejson;
-        }
+        $this->middleware('auth');
     }
 
-    public function cojson()
+    /**
+     * All temperature data in Database
+     * @return string
+     */
+    public function temperature_json()
     {
-        if (Auth::guest()) {
-            return view('home');
-        } else {
-            $cojson = json_encode(Co::all());
-            return $cojson;
-        }
+        $temperature_json = json_encode(Temperature::all());
+
+        return $temperature_json;
     }
 
-    public function temperaturejsonminute()
+    /**
+     * All CO data in Database
+     * @return string
+     */
+    public function co_json()
     {
-        if (Auth::guest()) {
-            return view('home');
-        } else {
-            $hour = DB::table('temperature')
-                ->where('created_at', '>=', Carbon::now('Asia/Almaty')->subSeconds(60));
-            $temeraturejson = json_encode($hour->get());
-            return $temeraturejson;
-        }
+        $co_json = json_encode(Co::all());
+
+        return $co_json;
     }
 
-    public function cojsonminute()
+    /**
+     * Last 60 seconds Temperature data in Database
+     * @return string
+     */
+    public function temperature_json_minute()
     {
-        if (Auth::guest()) {
-            return view('home');
-        } else {
-            $hour = DB::table('co')
-                ->where('created_at', '>=', Carbon::now('Asia/Almaty')->subSeconds(60));
-            $cojson = json_encode($hour->get());
-            return $cojson;
-        }
+        $hour = DB::table('temperature')
+            ->where('created_at', '>=', Carbon::now('Asia/Almaty')->subSeconds(60));
+        $temerature_json = json_encode($hour->get());
 
+        return $temerature_json;
     }
 
+    /**
+     * Last 60 seconds CO data in Database
+     * @return string
+     */
+    public function co_json_minute()
+    {
+        $hour = DB::table('co')
+            ->where('created_at', '>=', Carbon::now('Asia/Almaty')->subSeconds(60));
+        $co_json = json_encode($hour->get());
 
-
+        return $co_json;
+    }
 }

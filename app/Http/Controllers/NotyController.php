@@ -9,62 +9,70 @@ use DB;
 use Carbon\Carbon;
 
 
-
 class NotyController extends Controller
 {
-
-    // JSON дата - включать Noty или нет.
-    public function notyinfo()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        if (Auth::guest()) {
-            return view('home');
-        } else {
-            // Провера включены ли оповещения на сайте.
-            $working = DB::table('working')->get();
-            $work = $working->first()->warning_on;
-            if ($work == 1) {
-                // CO array за последнюю секунду
-                $co = DB::table('co');
-                $coarray = [];
-                $coobj = $co
-                    ->where('created_at', '>=', Carbon::now('Asia/Almaty')
-                        ->subSeconds(1))
-                    ->get();
+        $this->middleware('auth');
+    }
 
-                foreach ($coobj as $key => $value) {
-                    foreach ($value as $key => $value) {
-                        if($key == 'co') {
-                            $coarray['co'] = $value;
-                        }
-                    }
-                }
-
-                // Temperature array за последнюю секунду
-                $temperature = DB::table('temperature');
-                $temperaturearray = [];
-                $temperatureobj = $temperature
-                    ->where('created_at', '>=', Carbon::now('Asia/Almaty')
+    /**
+     * JSON дата - включать Noty или нет.
+     * @return array|string
+     */
+    public function noty_info()
+    {
+        // Провера включены ли оповещения на сайте.
+        $working = DB::table('working')->get();
+        $work = $working->first()->warning_on;
+        if ($work == 1) {
+            // CO array за последнюю секунду
+            $co = DB::table('co');
+            $co_array = [];
+            $co_obj = $co
+                ->where('created_at', '>=', Carbon::now('Asia/Almaty')
                     ->subSeconds(1))
-                    ->get();
+                ->get();
 
-                foreach ($temperatureobj as $key => $value) {
-                    foreach ($value as $key => $value) {
-                        if($key == 'temperature') {
-                            $temperaturearray['temperature'] = $value;
-                        }
+            foreach ($co_obj as $key => $value) {
+                foreach ($value as $key => $value) {
+                    if($key == 'co') {
+                        $co_array['co'] = $value;
                     }
                 }
-
-
-
-                // Глобальные данные для варнингов на сайте.
-                $co_temperature_noty_json_data = array_merge($coarray, $temperaturearray);
-
-                return json_encode($co_temperature_noty_json_data);
-            } else {
-                $errors = ['[Offline] Noty Отключена в панели','Empty'];
-                return $errors;
             }
+
+            // Temperature array за последнюю секунду
+            $temperature = DB::table('temperature');
+            $temperature_array = [];
+            $temperature_obj = $temperature
+                ->where('created_at', '>=', Carbon::now('Asia/Almaty')
+                ->subSeconds(1))
+                ->get();
+
+            foreach ($temperature_obj as $key => $value) {
+                foreach ($value as $key => $value) {
+                    if($key == 'temperature') {
+                        $temperature_array['temperature'] = $value;
+                    }
+                }
+            }
+
+
+
+            // Глобальные данные для варнингов на сайте.
+            $co_temperature_noty_json_data = array_merge($co_array, $temperature_array);
+
+            return json_encode($co_temperature_noty_json_data);
+        } else {
+            $errors = ['[Offline] Noty Отключена в панели','Empty'];
+            return $errors;
         }
     }
+
 }
