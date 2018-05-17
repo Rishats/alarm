@@ -27,20 +27,30 @@ class ArduinoController extends Controller
     }
     public function start_demo()
     {
-        if (Auth::guest()){
+        if (Auth::guest()) {
             return view('home');
-        }
-        else{
+        } else {
             Working::where('id', 1)->update(['demo_on' => 1]);
+
             while($demo_on = DB::table('working')->select('demo_on')->get()->first()->demo_on == 1){
-                $randomco = random_int(1, 1023);
-                $randomtemperature = random_int(1, 50);
+                $random_co = random_int(1, 1023);
+                $random_temperature = random_int(1, 50);
                 DB::table('co')->insert(
-                    ['co' => $randomco]
+                    [
+                        'co' => $random_co,
+                        'created_at' => Carbon::now('Asia/Almaty'),
+                        'updated_at' => Carbon::now('Asia/Almaty')
+                    ]
                 );
+
                 DB::table('temperature')->insert(
-                    ['temperature' => $randomtemperature]
+                    [
+                     'temperature' => $random_temperature,
+                     'created_at' => Carbon::now('Asia/Almaty'),
+                     'updated_at' => Carbon::now('Asia/Almaty')
+                    ]
                 );
+
                 sleep(1);
             }
             return redirect('/controlpanel');
@@ -50,68 +60,61 @@ class ArduinoController extends Controller
     {
         if (Auth::guest()){
             return view('home');        
-        }
-        else{
+        } else {
         	Working::where('id', 1)->update(['demo_on' => 0]);
             return redirect('/controlpanel');
         }
     }
     public function start_temperature()
     {
-        if (Auth::guest()){
+        if (Auth::guest()) {
             return view('home');
-        }
-        else{
+        } else {
             Working::where('id', 1)->update(['temperature_on' => 1]);
             return redirect('/controlpanel');
         }
     }
     public function stop_temperature()
     {
-        if (Auth::guest()){
+        if (Auth::guest()) {
             return view('home');        
-        }
-        else{
+        } else {
             Working::where('id', 1)->update(['temperature_on' => 0]);
             return redirect('/controlpanel');
         }
     }
     public function start_co()
     {
-        if (Auth::guest()){
+        if (Auth::guest()) {
             return view('home');
-        }
-        else{
+        } else {
             Working::where('id', 1)->update(['co_on' => 1]);
             return redirect('/controlpanel');
         }
     }
     public function stop_co()
     {
-        if (Auth::guest()){
+        if (Auth::guest()) {
             return view('home');        
-        }
-        else{
+        } else {
             Working::where('id', 1)->update(['co_on' => 0]);
             return redirect('/controlpanel');
         }
     }
     public function start_warning()
     {
-        if (Auth::guest()){
+        if (Auth::guest()) {
             return view('home');
-        }        
-        else{
+        } else {
             Working::where('id', 1)->update(['warning_on' => 1]);
             return redirect('/controlpanel');
         }
     }
     public function stop_warning()
     {
-        if (Auth::guest()){
+        if (Auth::guest()) {
             return view('home');        
-        }
-        else{
+        } else {
             Working::where('id', 1)->update(['warning_on' => 0]);
             return redirect('/controlpanel');
         }

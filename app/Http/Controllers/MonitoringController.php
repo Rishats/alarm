@@ -13,12 +13,9 @@ class MonitoringController extends Controller
 {
     public function temperaturejson()
     {
-        if (Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('home');
-        }
-        else
-        {
+        } else {
             $temperaturejson = json_encode(Temperature::all());
             return $temperaturejson;
         }
@@ -26,12 +23,9 @@ class MonitoringController extends Controller
 
     public function cojson()
     {
-        if (Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('home');
-        }
-        else
-        {
+        } else {
             $cojson = json_encode(Co::all());
             return $cojson;
         }
@@ -39,12 +33,9 @@ class MonitoringController extends Controller
 
     public function temperaturejsonminute()
     {
-        if (Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('home');
-        }
-        else
-        {
+        } else {
             $hour = DB::table('temperature')
                 ->where('created_at', '>=', Carbon::now('Asia/Almaty')->subSeconds(60));
             $temeraturejson = json_encode($hour->get());
@@ -54,12 +45,9 @@ class MonitoringController extends Controller
 
     public function cojsonminute()
     {
-        if (Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('home');
-        }
-        else
-        {
+        } else {
             $hour = DB::table('co')
                 ->where('created_at', '>=', Carbon::now('Asia/Almaty')->subSeconds(60));
             $cojson = json_encode($hour->get());

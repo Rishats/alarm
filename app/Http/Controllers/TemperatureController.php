@@ -11,16 +11,13 @@ class TemperatureController extends Controller
 {
     public function temperaturejsonnow()
     {
-        if (Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('home');
-        }
-        else
-        {
+        } else {
             $hour = DB::table('temperature')
                 ->where('created_at', '>=', Carbon::now('Asia/Almaty')->subSeconds(1));
-            $temeraturejson = json_encode($hour->get());
-            return $temeraturejson;
+            $temerature_json = json_encode($hour->get());
+            return $temerature_json;
         }
     }
 }

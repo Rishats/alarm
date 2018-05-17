@@ -14,16 +14,14 @@ class CoController extends Controller
     {
         if (Auth::guest()) {
             return view('home');
-        }
-        else
-        {
+        } else {
             $hour = DB::table('co');
 
-            $cojson = json_encode($hour
+            $co_json = json_encode($hour
                 ->where('created_at', '>=', Carbon::now('Asia/Almaty')
                 ->subSeconds(1))
                 ->get());
-            return $cojson;
+            return $co_json;
         }
     }
 }

@@ -16,17 +16,13 @@ class NotyController extends Controller
     // JSON дата - включать Noty или нет.
     public function notyinfo()
     {
-        if (Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('home');
-        }
-        else
-        {
+        } else {
             // Провера включены ли оповещения на сайте.
             $working = DB::table('working')->get();
             $work = $working->first()->warning_on;
-            if ($work == 1) 
-            {
+            if ($work == 1) {
                 // CO array за последнюю секунду
                 $co = DB::table('co');
                 $coarray = [];
@@ -35,12 +31,9 @@ class NotyController extends Controller
                         ->subSeconds(1))
                     ->get();
 
-                foreach ($coobj as $key => $value)
-                {
-                    foreach ($value as $key => $value)
-                    {
-                        if($key == 'co')
-                        {
+                foreach ($coobj as $key => $value) {
+                    foreach ($value as $key => $value) {
+                        if($key == 'co') {
                             $coarray['co'] = $value;
                         }
                     }
@@ -51,15 +44,12 @@ class NotyController extends Controller
                 $temperaturearray = [];
                 $temperatureobj = $temperature
                     ->where('created_at', '>=', Carbon::now('Asia/Almaty')
-                        ->subSeconds(1))
+                    ->subSeconds(1))
                     ->get();
 
-                foreach ($temperatureobj as $key => $value)
-                {
-                    foreach ($value as $key => $value)
-                    {
-                        if($key == 'temperature')
-                        {
+                foreach ($temperatureobj as $key => $value) {
+                    foreach ($value as $key => $value) {
+                        if($key == 'temperature') {
                             $temperaturearray['temperature'] = $value;
                         }
                     }
@@ -71,9 +61,7 @@ class NotyController extends Controller
                 $co_temperature_noty_json_data = array_merge($coarray, $temperaturearray);
 
                 return json_encode($co_temperature_noty_json_data);
-            }
-            else
-            {
+            } else {
                 $errors = ['[Offline] Noty Отключена в панели','Empty'];
                 return $errors;
             }
