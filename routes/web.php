@@ -19,68 +19,50 @@ Route::get('/', function () {
 
 
 Route::get('/temperature', function () {
-        if (Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('home');
-        }
-        else
-        {
+        } else {
             return view('temperature');
         }
 });
 
 Route::get('/co', function () {
-        if (Auth::guest())
-        {
+        if (Auth::guest()) {
             return view('home');
-        }
-        else
-        {
+        } else {
             return view('co');
         }
 });
 
 Route::get('/monitoring', function () {
-        if (Auth::guest())
-        {
+        if (Auth::guest()){
             return view('home');
-        }
-        else
-        {
+        } else {
             return view('monitoring');
         }
 });
 
 Route::get('/warning', function () {
-        if (Auth::guest())
-        {
+        if (Auth::guest()){
             return view('home');
-        }
-        else
-        {
+        } else {
             return view('warning');
         }
 });
 
 
 Route::get('/addressees', function () {
-        if (Auth::guest())
-        {
+        if (Auth::guest()){
             return view('home');
-        }
-        else
-        {
+        } else {
             return view('addressees');
         }
 });
 
 Route::get('/logoutmy', function () {
-        if (Auth::guest())
-        {
+        if (Auth::guest()){
             return view('home');
-        }
-        else
-        {
+        } else {
             return view('logoutmy');
         }
 });
