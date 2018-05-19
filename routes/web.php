@@ -32,7 +32,6 @@ Route::get('/logout', 'HomeController@logout')->name('logout');
 Route::get('/controlpanel', 'HomeController@control_panel')->name('control_panel');
 
 // Управления датчиками и Ардуино.
-Route::get('/controlpanel','ArduinoController@control_panel');
 Route::get('/startdemo','ArduinoController@start_demo');
 Route::get('/stopdemo','ArduinoController@stop_demo');
 Route::get('/starttemperature','ArduinoController@start_temperature');
