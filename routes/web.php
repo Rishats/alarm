@@ -11,52 +11,25 @@
 |
 */
 
-// Лого вьюха.
+// Главная страница для неавторизованных юзеров.
 Route::get('/', function () {
     return view('logo');
 });
 
+/**
+ * Админ часть
+ */
+Auth::routes();
 
-Route::get('/temperature', function () {
-    return view('temperature');
-})->middleware('auth');
-
-Route::get('/co', function () {
-    return view('co');
-})->middleware('auth');
-
-Route::get('/monitoring', function () {
-    return view('monitoring');
-})->middleware('auth');
-
-Route::get('/warning', function () {
-    return view('warning');
-})->middleware('auth');
-
-Route::get('/addressees', function () {
-    return view('addressees');
-})->middleware('auth');
-
-Route::get('/logoutmy', function () {
-    return view('logoutmy');
-})->middleware('auth');
-
-
-// Температура в JSON формате все данные.
-Route::get('/temperaturejson','MonitoringController@temperature_json');
-Route::get('/cojson','MonitoringController@co_json');
-
-// Температура в JSON формате за последнюю секунду.
-Route::get('/temperaturejsonnow','TemperatureController@temperature_json_now');
-Route::get('/cojsonnow','CoController@co_json_now');
-
-// Температура в JSON формате данные за последнюю минуту (60 секунд).
-Route::get('/temperaturejsonminute','MonitoringController@temperature_json_minute');
-Route::get('/cojsonminute','MonitoringController@co_json_minute');
-
-// Notification(Оповещение) в JSON формате данные за последнюю секунду.
-Route::get('/notyjsonnow','NotificationController@noty_info');
-
+// Информационные страницы.
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/temperature', 'HomeController@temperature')->name('temperature');
+Route::get('/co', 'HomeController@co')->name('co');
+Route::get('/monitoring', 'HomeController@monitoring')->name('monitoring');
+Route::get('/warning', 'HomeController@warning')->name('warning');
+Route::get('/addressees', 'HomeController@addressees')->name('addressees');
+Route::get('/logout', 'HomeController@logout')->name('logout');
+Route::get('/controlpanel', 'HomeController@control_panel')->name('control_panel');
 
 // Управления датчиками и Ардуино.
 Route::get('/controlpanel','ArduinoController@control_panel');
@@ -69,10 +42,18 @@ Route::get('/stopco','ArduinoController@stop_co');
 Route::get('/startwarning','ArduinoController@start_warning');
 Route::get('/stopwarning','ArduinoController@stop_warning');
 
-
-// Админ панель
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+/**
+ * API JSON для авторизированных юзеров.
+ */
+// Температура в JSON формате все данные.
+Route::get('/temperaturejson','MonitoringController@temperature_json');
+Route::get('/cojson','MonitoringController@co_json');
+// Температура в JSON формате за последнюю секунду.
+Route::get('/temperaturejsonnow','TemperatureController@temperature_json_now');
+Route::get('/cojsonnow','CoController@co_json_now');
+// Температура в JSON формате данные за последнюю минуту (60 секунд).
+Route::get('/temperaturejsonminute','MonitoringController@temperature_json_minute');
+Route::get('/cojsonminute','MonitoringController@co_json_minute');
+// Notification(Оповещение) в JSON формате данные за последнюю секунду.
+Route::get('/notyjsonnow','NotificationController@noty_info');
 
