@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Working as Working;
+use App\Recipient;
 
 class HomeController extends Controller
 {
@@ -74,7 +75,9 @@ class HomeController extends Controller
      */
     public function addressees()
     {
-        return view('addressees');
+        $addressees=Recipient::all();
+
+        return view('addressees',compact('addressees'));
     }
 
     /**

@@ -28,6 +28,7 @@ Route::get('/co', 'HomeController@co')->name('co');
 Route::get('/monitoring', 'HomeController@monitoring')->name('monitoring');
 Route::get('/warning', 'HomeController@warning')->name('warning');
 Route::get('/addressees', 'HomeController@addressees')->name('addressees');
+Route::resource('/addressees_resource','AddresseesController');
 Route::get('/logout', 'HomeController@logout')->name('logout');
 Route::get('/controlpanel', 'HomeController@control_panel')->name('control_panel');
 
