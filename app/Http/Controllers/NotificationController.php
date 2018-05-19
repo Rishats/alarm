@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\r;
-use Illuminate\Http\Request;
-use Auth;
 use DB;
 use Carbon\Carbon;
 
 
-class NotyController extends Controller
+class NotificationController extends Controller
 {
     /**
      * Create a new controller instance.

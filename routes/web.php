@@ -54,8 +54,8 @@ Route::get('/cojsonnow','CoController@co_json_now');
 Route::get('/temperaturejsonminute','MonitoringController@temperature_json_minute');
 Route::get('/cojsonminute','MonitoringController@co_json_minute');
 
-// Noty(Оповещение) в JSON формате данные за последнюю секунду.
-Route::get('/notyjsonnow','NotyController@noty_info');
+// Notification(Оповещение) в JSON формате данные за последнюю секунду.
+Route::get('/notyjsonnow','NotificationController@noty_info');
 
 
 // Управления датчиками и Ардуино.
