@@ -50,7 +50,7 @@ xmlhttps.onreadystatechange = function() {
             sound.play(); // Включение звука
         }
     }
-    if(noty[1] >= 35)
+    if(noty[1] >= 32)
     {
         {
             new Noty({

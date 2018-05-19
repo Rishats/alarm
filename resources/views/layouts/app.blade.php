@@ -68,7 +68,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                    <form action="/logoutmy">
+                                    <form action="/logout">
                                         <p style="text-align: center"><button class="btn btn-primary">Выйти</button>
                                     </form>
                                     </li>
