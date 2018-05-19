@@ -15,21 +15,7 @@ class ArduinoController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function control_panel()
-    {
-        $working_all = Working::first();
-        $demo_on = $working_all->demo_on;
-        $co_on = $working_all->co_on;
-        $temperature_on = $working_all->temperature_on;
-        $warning_on = $working_all->warning_on;
-
-        return view('controlpanel',compact('demo_on','co_on','temperature_on','warning_on'));
+        $this->middleware('is_admin');
     }
 
     /**
