@@ -92,6 +92,6 @@ xmlhttps.onreadystatechange = function() {
 };
 
 setInterval(function() {
-    xmlhttps.open("GET", "notyjsonnow", true);
+    xmlhttps.open("GET", "notyjsonnow");
     xmlhttps.send();
 }, 1000);

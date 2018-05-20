@@ -9,6 +9,7 @@
             <link rel="shortcut icon" href="{{ asset('img/lock.ico') }}">
         @else
             <link rel="shortcut icon" href="{{ asset('img/auth.ico') }}">
+            <link href="css/noty.css" rel="stylesheet">
         @endif
     <script src="{{ asset('js/favicon.js') }}"></script>
     <!-- CSRF Token -->
@@ -90,12 +91,13 @@
         <script src='js/snap.svg-min.js'></script>
         <script src='js/jquery-3.2.1.min.js'></script>
         <script src='js/angular.min.js'></script>
-
+        <script src="js/howler.js"></script>
+        <script src="js/noty.js" type="text/javascript"></script>
+        <script src="js/noty_project.js" type="text/javascript"></script>
         <script src="js/menu.js"></script>
         @endif
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="js/noty_project.js" type="text/javascript"></script>
     </div>
 </body>
 </html>
