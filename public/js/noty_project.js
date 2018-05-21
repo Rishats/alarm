@@ -86,7 +86,7 @@ xmlhttps.onreadystatechange = function() {
                 src: ['wav/warning.wav']
             });
 
-            //sound.play(); // Включение звука
+            sound.play(); // Включение звука
         }
     }
 };
