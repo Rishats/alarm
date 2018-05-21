@@ -53,8 +53,8 @@ class EmailNotificationController extends Controller
             if(count($addressees) >= 1){
                 foreach ($addressees as $recipient){
                     Mail::to($recipient->email)->send(new NotificationWarned($notification));
+                    EmailNotification::where('id', 1)->update(['updated_at' => Carbon::now()]);
                 }
-                EmailNotification::where('id', 1)->update(['updated_at' => Carbon::now()]);
                 return 'Send';
             } else {
                 return 'Not send';
