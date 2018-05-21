@@ -33,6 +33,7 @@ class EmailNotificationController extends Controller
             $next_email_notification_time_can_send = Carbon::now();
             $total_duration = $next_email_notification_time_can_send->diffInMinutes($last_email_notification_time_send);
             if($total_duration >= 5) {
+                EmailNotification::where('id', 1)->update(['updated_at' => Carbon::now()]);
                 return true;
             } else {
                 return false;
@@ -53,7 +54,6 @@ class EmailNotificationController extends Controller
             if(count($addressees) >= 1){
                 foreach ($addressees as $recipient){
                     Mail::to($recipient->email)->send(new NotificationWarned($notification));
-                    EmailNotification::where('id', 1)->update(['updated_at' => Carbon::now()]);
                 }
                 return 'Send';
             } else {
