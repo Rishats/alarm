@@ -32,16 +32,16 @@ class ArduinoController extends Controller
             DB::table('co')->insert(
                 [
                     'co' => $random_co,
-                    'created_at' => Carbon::now('Asia/Almaty'),
-                    'updated_at' => Carbon::now('Asia/Almaty')
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
                 ]
             );
 
             DB::table('temperature')->insert(
                 [
                  'temperature' => $random_temperature,
-                 'created_at' => Carbon::now('Asia/Almaty'),
-                 'updated_at' => Carbon::now('Asia/Almaty')
+                 'created_at' => Carbon::now(),
+                 'updated_at' => Carbon::now()
                 ]
             );
 
@@ -125,6 +125,28 @@ class ArduinoController extends Controller
     public function stop_warning()
     {
         Working::where('id', 1)->update(['warning_on' => 0]);
+
+        return redirect('/controlpanel');
+    }
+
+    /**
+     * Start Email alarm.
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function start_email_notification()
+    {
+        Working::where('id', 1)->update(['email_notification_on' => 1]);
+
+        return redirect('/controlpanel');
+    }
+
+    /**
+     * Stop Email alarm
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function stop_email_notification()
+    {
+        Working::where('id', 1)->update(['email_notification_on' => 0]);
 
         return redirect('/controlpanel');
     }

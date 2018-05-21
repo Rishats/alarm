@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
                 'temperature_on' => 0,
                 'co_on' => 0,
                 'warning_on' => 0,
+                'email_notification_on' => 0,
             ]);
         DB::table('users')->insert([
             'name' => 'admin',
@@ -29,6 +31,10 @@ class DatabaseSeeder extends Seeder
         DB::table('noty')->insert([
             'co' => 0,
             'temperature' => 0,
+        ]);
+        DB::table('email_notification')->insert([
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
     }
 }

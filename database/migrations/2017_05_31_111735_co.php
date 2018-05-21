@@ -16,8 +16,7 @@ class Co extends Migration
         Schema::create('co', function (Blueprint $table) {
             $table->increments('id');
             $table->smallInteger('co');
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

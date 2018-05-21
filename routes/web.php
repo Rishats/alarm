@@ -32,7 +32,7 @@ Route::resource('/addressees_resource','AddresseesController');
 Route::get('/logout', 'HomeController@logout')->name('logout');
 Route::get('/controlpanel', 'HomeController@control_panel')->name('control_panel');
 
-// Управления датчиками и Ардуино.
+// Управления Ардуино и системой безопасности.
 Route::get('/startdemo','ArduinoController@start_demo');
 Route::get('/stopdemo','ArduinoController@stop_demo');
 Route::get('/starttemperature','ArduinoController@start_temperature');
@@ -41,6 +41,9 @@ Route::get('/startco','ArduinoController@start_co');
 Route::get('/stopco','ArduinoController@stop_co');
 Route::get('/startwarning','ArduinoController@start_warning');
 Route::get('/stopwarning','ArduinoController@stop_warning');
+Route::get('/start_email_notification','ArduinoController@start_email_notification');
+Route::get('/stop_email_notification','ArduinoController@stop_email_notification');
+Route::get('/send_email_notification','EmailNotificationController@send_email_notification');
 
 /**
  * API JSON для авторизированных юзеров.

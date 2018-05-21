@@ -62,8 +62,8 @@
           <div class="areano">⚠ Остановлено</div>
         @endif
         <hr style="width: 100%">
-	      <div class="alert alert-info fade in">
         <h4>Датчик температуры</h4>
+	      <div class="alert alert-info fade in">
 	        <strong>Запуск датчика температуры</strong>
 	      </div>
         <div class="buttons_left">
@@ -83,8 +83,8 @@
         @endif
         <hr style="width: 100%">
 	      <!-- Rounded switch -->
-	      <div class="alert alert-info fade in">
         <h4>Датчик CO </h4>
+	      <div class="alert alert-info fade in">
 	      <strong>Запуск датчика CO</strong>
 	      </div>
         <div class="buttons_left">
@@ -104,6 +104,28 @@
         @endif
         <hr style="width: 100%">
 	    <!-- Rounded switch -->
+    <!-- Rounded switch -->
+    <h4>Уведомления </h4>
+    <div class="alert alert-info fade in">
+        <strong>Запуск системы оповещений по Email.</strong>
+    </div>
+    <div class="buttons_left">
+        <form action="/start_email_notification">
+            <input type="submit" class="btn btn-success" value="Запустить">
+        </form>
+    </div>
+    <div class="buttons_right">
+        <form action="/stop_email_notification">
+            <input type="submit" class="btn btn-warning" value="Приостановить">
+        </form>
+    </div>
+    @if($email_notification_on == 1)
+        <div class="area">⚠ Запущено</div>
+    @else
+        <div class="areano">⚠ Остановлено</div>
+    @endif
+    <hr style="width: 100%">
+    <!-- Rounded switch -->
 	    <h4>Уведомления </h4>
         <div class="alert alert-danger fade in">
             <strong>Запуск системы оповещений на сайте.</strong>

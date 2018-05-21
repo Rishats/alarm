@@ -102,7 +102,8 @@ class HomeController extends Controller
         $co_on = $working_all->co_on;
         $temperature_on = $working_all->temperature_on;
         $warning_on = $working_all->warning_on;
+        $email_notification_on = $working_all->email_notification_on;
 
-        return view('controlpanel',compact('demo_on','co_on','temperature_on','warning_on'));
+        return view('controlpanel',compact('demo_on','co_on','temperature_on','warning_on', 'email_notification_on'));
     }
 }

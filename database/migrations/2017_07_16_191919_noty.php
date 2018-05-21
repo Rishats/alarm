@@ -17,8 +17,8 @@ class Noty extends Migration
             $table->increments('id');
             $table->tinyInteger('co')->default(0);
             $table->tinyInteger('temperature')->default(0);
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->default(Carbon::now());
+            $table->timestamp('updated_at')->default(Carbon::now());
         });
     }
 

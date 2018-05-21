@@ -60,10 +60,13 @@ class NotificationController extends Controller
                 }
             }
 
-
-
             // Глобальные данные для варнингов на сайте.
             $co_temperature_noty_json_data = array_merge($co_array, $temperature_array);
+
+            // If limits - send Email Warning.
+            if($co_array['co'] >= 550 || $temperature_array['temperature'] >= 31) {
+                app('App\Http\Controllers\EmailNotificationController')->send_email_notification($co_temperature_noty_json_data);
+            }
 
             return json_encode($co_temperature_noty_json_data);
         } else {
