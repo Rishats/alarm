@@ -136,6 +136,7 @@ class ArduinoController extends Controller
     public function start_email_notification()
     {
         Working::where('id', 1)->update(['email_notification_on' => 1]);
+        Working::where('id', 1)->update(['warning_on' => 1]);
 
         return redirect('/controlpanel');
     }
