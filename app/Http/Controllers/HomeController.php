@@ -106,4 +106,14 @@ class HomeController extends Controller
 
         return view('controlpanel',compact('demo_on','co_on','temperature_on','warning_on', 'email_notification_on'));
     }
+
+    /**
+     * Show the application Documentation.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function documentation()
+    {
+        return view('documentation');
+    }
 }

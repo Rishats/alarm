@@ -31,6 +31,7 @@ Route::get('/addressees', 'HomeController@addressees')->name('addressees');
 Route::resource('/addressees_resource','AddresseesController');
 Route::get('/logout', 'HomeController@logout')->name('logout');
 Route::get('/controlpanel', 'HomeController@control_panel')->name('control_panel');
+Route::get('/documentation', 'HomeController@documentation')->name('documentation');
 
 // Управления Ардуино и системой безопасности.
 Route::get('/startdemo','ArduinoController@start_demo');
