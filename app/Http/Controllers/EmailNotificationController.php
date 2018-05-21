@@ -12,16 +12,6 @@ use Mail;
 class EmailNotificationController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('is_admin');
-    }
-
-    /**
      * If email notification enabled in control panel and the last notification email was sent at least five minutes ago,
      * So you can send email notification - $return true
      * @return bool
