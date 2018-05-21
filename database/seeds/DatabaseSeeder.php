@@ -23,10 +23,16 @@ class DatabaseSeeder extends Seeder
                 'email_notification_on' => 0,
             ]);
         DB::table('users')->insert([
-            'name' => 'admin',
+            'name' => 'Администратор',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
             'type' => User::ADMIN_TYPE,
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Студент',
+            'email' => 'iuca@iuca.kg',
+            'password' => bcrypt('iuca'),
+            'type' => User::DEFAULT_TYPE,
         ]);
         DB::table('noty')->insert([
             'co' => 0,
