@@ -43,7 +43,6 @@ Route::get('/startwarning','ArduinoController@start_warning');
 Route::get('/stopwarning','ArduinoController@stop_warning');
 Route::get('/start_email_notification','ArduinoController@start_email_notification');
 Route::get('/stop_email_notification','ArduinoController@stop_email_notification');
-Route::get('/send_email_notification','EmailNotificationController@send_email_notification');
 
 /**
  * API JSON для авторизированных юзеров.
