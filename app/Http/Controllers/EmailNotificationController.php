@@ -8,6 +8,8 @@ use App\Recipient;
 use App\Working as Working;
 use Carbon\Carbon as Carbon;
 use Mail;
+use Illuminate\Support\Facades\Log;
+
 
 class EmailNotificationController extends Controller
 {
@@ -44,6 +46,7 @@ class EmailNotificationController extends Controller
             if(count($addressees) >= 1){
                 foreach ($addressees as $recipient){
                     Mail::to($recipient->email)->send(new NotificationWarned($notification));
+                    Log::info('Send email notification for: '.$recipient->email);
                 }
                 return 'Send';
             } else {

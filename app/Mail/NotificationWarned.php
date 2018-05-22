@@ -35,6 +35,7 @@ class NotificationWarned extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.notification.warned', compact('notification'));
+        return $this->from(env('MAIL_USERNAME'))
+            ->view('emails.notification.warned', compact('notification'));
     }
 }
